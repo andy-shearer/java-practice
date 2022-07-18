@@ -1,8 +1,11 @@
 package dev.shez;
 
 public class Border implements DogInterface, FoliageInterface{
+
+    private static final String BREED = "Border Terrier";
+
     public String getBreed() {
-        return "Border Terrier";
+        return BREED;
     }
 
     public FoliageType getFoliageType() {
@@ -16,5 +19,11 @@ public class Border implements DogInterface, FoliageInterface{
     @Override
     public String getBark() {
         return DogInterface.super.getBark();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Border borderObj) && // Type-check and cast obj to type 'Border' in one line
+                (borderObj.getBreed().matches(BREED));
     }
 }
