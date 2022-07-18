@@ -1,6 +1,10 @@
-package dev.shez;
+package dev.shez.dogs;
 
-public class Border implements DogInterface, FoliageInterface{
+import dev.shez.DogInterface;
+import dev.shez.FoliageInterface;
+import dev.shez.FoliageType;
+
+public class Border implements DogInterface, FoliageInterface {
 
     private static final String BREED = "Border Terrier";
 
