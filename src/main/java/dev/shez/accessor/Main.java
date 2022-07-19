@@ -1,24 +1,17 @@
 package dev.shez.accessor;
 
-import dev.shez.dogs.Border;
-import dev.shez.DogInterface;
-import dev.shez.dogs.Dachshund;
+import dev.shez.Quicksort;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        Border b = new Border();
-        System.out.println(b.getBark());
+        int[] arr = {75, 26, 15, 67, 85, 54, 31, 49, 63};
+        //int[] arr = {63, 21, 37, 71, -3, 0};
+        //int[] arr = {12};
 
-        DogInterface myBorder = b;
-        DogInterface myDachshund = new Dachshund();
-
-        List<DogInterface> myDogs = Arrays.asList(myBorder, myDachshund);
-        for(DogInterface dog : myDogs) {
-            System.out.println(dog.getBreed());
-        }
+        Quicksort qs = new Quicksort();
+        System.out.println(Arrays.toString(qs.sort(arr, 0, arr.length - 1)));
     }
 }
