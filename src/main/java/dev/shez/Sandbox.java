@@ -1,8 +1,13 @@
 package dev.shez;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Sandbox {
 
@@ -64,6 +69,49 @@ public class Sandbox {
     @Author("Andy")
     public void testMyNewAnnotation() {
         System.out.println("Did it work?");
+    }
+
+    /**
+     * Split a string that is delimited with underscores and dashes into camel case, preserving the case of the start of
+     * the provided string.
+     * @param s word to turn to camel case
+     * @return {@link String} in camel case
+     */
+    public static String toCamelCase(String s) {
+        String[] words = s.split("[-_]");
+        return Arrays.stream(words, 1, words.length)
+                    .map(w -> w.substring(0,1).toUpperCase() + w.substring(1))
+                    .reduce(words[0], String::concat);
+    }
+
+    public <T extends FalconRocket & Serializable, G> List<G> falconsToList(T[] arr, Function<T, G> mapperFunc) {
+        return Arrays.stream(arr).map(mapperFunc).collect(Collectors.toList());
+    }
+
+    public double sumNumbers (List<? extends Number> items) {
+        double result = 0.0;
+        for(Number item : items) {
+            result += item.doubleValue();
+        }
+        return result;
+    }
+    
+    public static <T extends Comparable<T>> boolean checkMatchingOrder(List<T> list1, List<T> list2) {
+        if(list1.size() != list2.size()) {
+            return false;
+        }
+
+        for(int i = 0; i < list1.size(); i++ ) {
+            if(list1.get(i).compareTo(list2.get(i)) != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void printAllEntries(Map<?, ?> map) {
+        map.forEach((a, b) -> System.out.println(a + ", " + b));
     }
 }
 
