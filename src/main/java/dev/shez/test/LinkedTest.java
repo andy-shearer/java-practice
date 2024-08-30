@@ -60,4 +60,21 @@ public class LinkedTest {
         assertNull("Expected next link to be null", head.getNext());
 
     }
+
+    @Test
+    public void getSecondToLast() {
+        LinkedElement head = LinkedExercises.createLinkedList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+        LinkedElement result = LinkedExercises.findNthToLast(2, head);
+
+        assertEquals("Expected 'Saturday' to be the 2nd to last element", "Saturday", result.getData());
+    }
+
+    @Test
+    public void nthToLastExceedsListSize() {
+        LinkedElement head = LinkedExercises.createLinkedList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+        LinkedElement result = LinkedExercises.findNthToLast(8, head);
+
+        assertNull("Expected null return as n exceeds list size", result);
+
+    }
 }

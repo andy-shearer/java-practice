@@ -74,4 +74,21 @@ public class LinkedExercises {
 
         return head;
     }
+
+    public static LinkedElement findNthToLast(int n, LinkedElement head) {
+        int counter = 1;
+        LinkedElement curr = head;
+        LinkedElement result = null;
+
+        while(curr.hasNext()) {
+            curr = curr.getNext();
+            if(++counter == n) {
+                result = head;
+            } else if(counter > n) {
+                result = result != null ? result.getNext() : null;
+            }
+        }
+
+        return result;
+    }
 }
