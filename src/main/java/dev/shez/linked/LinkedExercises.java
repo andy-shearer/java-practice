@@ -36,9 +36,37 @@ public class LinkedExercises {
         while(curr != null) {
             if(tracker.contains(curr.getData())) {
                 LinkedElement prev = curr.getPrev();
-                prev.setNext(curr.getNext());
+                prev.setNext(curr.getNext()); // Remove the duplicated item from the link of the 'next' element in the chain
+                if(curr.hasNext()) {
+                    curr.getNext().setPrev(prev); // Remove the duplicated item from the link of the 'previous' element in the chain
+                }
             } else {
                 tracker.add(curr.getData());
+            }
+
+            curr = curr.getNext();
+        }
+
+        return head;
+    }
+
+    public static LinkedElement removeDuplicatesWithoutBuffer(LinkedElement head) {
+        LinkedElement curr = head;
+
+        while(curr != null) {
+            String data = curr.getData();
+            LinkedElement prev = curr.getPrev();
+            while (prev != null) {
+                if(prev.getData().matches(data)) {
+                    // Duplicate, remove!
+                    curr.getPrev().setNext(curr.getNext());
+                    if(curr.hasNext()) {
+                        curr.getNext().setPrev(curr.getPrev());
+                    }
+                    break;
+                } else {
+                    prev = prev.getPrev();
+                }
             }
 
             curr = curr.getNext();
